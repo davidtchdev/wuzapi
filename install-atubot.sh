@@ -11,7 +11,7 @@ apt install -y curl unzip
 
 # Descargar el archivo comprimido desde el repositorio
 echo "Descargando archivo comprimido..."
-curl -L -o wuzapi.zip https://github.com/davidtchdev/wuzapi/releases/download/Assets/wuzapi.zip
+curl -L -o wuzapi.zip https://github.com/davidtchdev/wuzapi/releases/download/Assets/atubot_arm64.zip
 
 # Descomprimir el archivo
 echo "Descomprimiendo archivo..."
