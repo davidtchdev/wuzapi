@@ -1,24 +1,39 @@
 #!/bin/bash
+echo "##### ESTE PROCESO TARDARA ENTRE 15 A 20 MINUTOS #####"
+# Actualizar los paquetes del sistema
+echo "Actualizando los paquetes del sistema..."
+pkg update -y &>/dev/null && pkg upgrade -y &>/dev/null
+echo "Actualización completada."
 
-# Limpiar consola
-clear
+# Instalar Git y Go
+echo "Instalando Git y Go..."
+pkg install -y git golang &>/dev/null
+echo "Git y Go se han instalado correctamente."
 
-# Actualizar e instalar dependencias necesarias
-echo "Actualizando e instalando dependencias..."
-apt update
-apt upgrade -y
-apt install -y curl unzip
+# Clonar el repositorio de WuzAPI
+echo "Clonando el repositorio de ATUBOT..."
+git clone https://github.com/davidtchdev/wuzapi.git &>/dev/null
+echo "Repositorio clonado con éxito."
 
-# Descargar el archivo comprimido desde el repositorio
-echo "Descargando archivo comprimido..."
-curl -L -o atubot_arm64.zip https://github.com/davidtchdev/wuzapi/releases/download/Assets/atubot_arm64.zip
+# Navegar al directorio del proyecto
+cd wuzapi
 
-# Descomprimir el archivo
-echo "Descomprimiendo archivo..."
-unzip atubot_arm64.zip
+# Compilar el binario de WuzAPI con el nombre por defecto
+echo "Compilando el binario..."
+go build .&>/dev/null
 
-# Hacer el binario ejecutable
-chmod +x ./atubot_arm64
+# Verificar que el binario se haya compilado correctamente
+if [ -f "./wuzapi" ]; then
+    echo "ATUBOT se ha compilado correctamente en Termux."
+    
+    # Dar permisos de ejecución al binario
+    chmod +x wuzapi
+    echo "Permisos de ejecución otorgados a ATUBOT."
+else
+    echo "Error al compilar ATUBOT."
+    exit 1
+fi
 
-# Ejecutar el binario
-./atubot_arm64
+# Ejecutar WuzAPI
+echo "Ejecutando ATUBOT..."
+./wuzapi
