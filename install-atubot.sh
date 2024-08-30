@@ -1,9 +1,5 @@
 #!/bin/bash
 echo "##### ESTE PROCESO TARDARA ENTRE 15 A 20 MINUTOS #####"
-# Actualizar los paquetes del sistema
-echo "Actualizando los paquetes del sistema..."
-pkg update -y &>/dev/null && pkg upgrade -y &>/dev/null
-echo "Actualización completada."
 
 # Instalar Git y Go
 echo "Instalando Git y Go..."
