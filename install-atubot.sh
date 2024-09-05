@@ -24,11 +24,15 @@ if [ -f "./wuzapi" ]; then
     
     # Dar permisos de ejecución al binario
     chmod +x wuzapi
+    chmod +x ejecutar_wuzapi.sh
+
     echo "Permisos de ejecución otorgados a ATUBOT."
 else
     echo "Error al compilar ATUBOT."
     exit 1
 fi
+#concediendo permisos a tasker
+mkdir -p ~/.termux && echo "allow-external-apps=true" >> ~/.termux/termux.properties
 
 # Ejecutar WuzAPI
 echo "Ejecutando ATUBOT..."
